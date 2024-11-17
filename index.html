@@ -69,17 +69,11 @@
   <div class="status" id="status">Status: Waiting for action...</div>
 
   <script>
-    const espIp = 'http://192.168.0.104'; // Replace with your ESP IP address
-
     async function sendRequest(action) {
+      const proxyUrl = 'http://localhost:3000';
       const endpoint = action === 'ON' ? '/ON' : '/OFF';
       try {
-        const response = await fetch(`${espIp}${endpoint}`, {
-          method: 'GET',
-          mode: 'no-cors'
-        });
-        
-        // Update status message based on action
+        const response = await fetch(`${proxyUrl}${endpoint}`);
         document.getElementById('status').innerText = 
           action === 'ON' ? 'Status: Device Turned ON' : 'Status: Device Turned OFF';
       } catch (error) {
@@ -89,6 +83,7 @@
       }
     }
   </script>
+  
 </body>
 </html>
 
